@@ -20,9 +20,12 @@ public class LoginRegisterViewModel extends AndroidViewModel {
         this.appRepository = new AppRepository(application);
         mutableLiveData = appRepository.getUserMutableLiveData();
     }
-    @RequiresApi(api = Build.VERSION_CODES.P)
-    public void register(String name, String email){
-        appRepository.register(name,email);
+
+    public void login(String email,String password){
+        appRepository.login(email,password);
+    }
+    public void register(String email,String password){
+        appRepository.register(email,password);
 
     }
 

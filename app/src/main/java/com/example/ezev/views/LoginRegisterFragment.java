@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.ezev.R;
 import com.example.ezev.viewmodel.LoginRegisterViewModel;
@@ -34,7 +35,7 @@ public class LoginRegisterFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
-                    Toast.makeText(getContext(),"User created",Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_loggedInFragment);
 
                 }
             }
@@ -51,18 +52,18 @@ public class LoginRegisterFragment extends Fragment {
         loginButton = view.findViewById(R.id.fragment_loginregister_login);
         registerButton = view.findViewById(R.id.fragment_loginregister_register);
 
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String email = emailEditText.getText().toString();
-//                String password = passwordEditText.getText().toString();
-//                if (email.length() > 0 && password.length() > 0) {
-//                    loginRegisterViewModel.login(email, password);
-//                } else {
-//                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                if (email.length() > 0 && password.length() > 0) {
+                    loginRegisterViewModel.login(email, password);
+                } else {
+                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

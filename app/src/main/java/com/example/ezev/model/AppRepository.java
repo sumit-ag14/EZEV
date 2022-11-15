@@ -24,7 +24,20 @@ public class AppRepository {
         userMutableLiveData = new MutableLiveData<>();
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.P)
+    public void login(String email,String password){
+        firebaseAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                        }
+                        else{
+                            Toast.makeText(application, "sign in fail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     public void register(String email, String password){
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
