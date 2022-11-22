@@ -19,13 +19,15 @@ import androidx.navigation.Navigation;
 import com.example.ezev.R;
 import com.example.ezev.viewmodel.LoginRegisterViewModel;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginRegisterFragment extends Fragment {
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
     private Button registerButton;
-
+    private EditText phoneNumberEditText;
+    private EditText nameEditText;
     private LoginRegisterViewModel loginRegisterViewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,12 +53,16 @@ public class LoginRegisterFragment extends Fragment {
         passwordEditText = view.findViewById(R.id.fragment_loginregister_password);
         loginButton = view.findViewById(R.id.fragment_loginregister_login);
         registerButton = view.findViewById(R.id.fragment_loginregister_register);
+        phoneNumberEditText = view.findViewById(R.id.fragment_loginregister_phone);
+        nameEditText = view.findViewById(R.id.fragment_loginregister_name);
+        
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
+
                 if (email.length() > 0 && password.length() > 0) {
                     loginRegisterViewModel.login(email, password);
                 } else {
@@ -70,10 +76,10 @@ public class LoginRegisterFragment extends Fragment {
             public void onClick(View view) {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                if (email.length() > 0 && password.length() > 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        loginRegisterViewModel.register(email, password);
-                    }
+                String phoneNumber = phoneNumberEditText.getText().toString();
+                String name = nameEditText.getText().toString();
+                if (email.length() > 0 && password.length() > 0 && name.length()>0 && phoneNumber.length()>0) {
+                        loginRegisterViewModel.register(email, password,name,phoneNumber);
                 } else {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
                 }

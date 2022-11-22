@@ -24,8 +24,8 @@ public class LoginRegisterViewModel extends AndroidViewModel {
     public void login(String email,String password){
         appRepository.login(email,password);
     }
-    public void register(String email,String password){
-        appRepository.register(email,password);
+    public void register(String email,String password,String name,String phoneNumber){
+        appRepository.register(email,password,name,phoneNumber);
 
     }
 

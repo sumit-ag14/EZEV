@@ -2,6 +2,7 @@ package com.example.ezev.model;
 
 import android.app.Application;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -9,19 +10,28 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class AppRepository {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
+    private FirebaseFirestore firebaseFirestore;
+    private String userId;
+    private static final String TAG = "success";
     public AppRepository(Application application) {
         this.application = application;
         firebaseAuth = FirebaseAuth.getInstance();
         userMutableLiveData = new MutableLiveData<>();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
     }
     public void login(String email,String password){
@@ -30,6 +40,7 @@ public class AppRepository {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
                             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
                         }
                         else{
@@ -38,12 +49,28 @@ public class AppRepository {
                     }
                 });
     }
-    public void register(String email, String password){
+    public void register(String email, String password,String name,String phoneNumber){
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+
+                            userId = firebaseAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
+                            HashMap<String,Object> hash = new HashMap<>();
+                            hash.put("full_name",name);
+                            hash.put("phone_number",phoneNumber);
+                            hash.put("email",email);
+                            documentReference.set(hash).addOnSuccessListener(
+                                    new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.i(TAG, "onSuccess: ");
+                                        }
+                                    }
+                            );
                             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
                         }
                         else{
