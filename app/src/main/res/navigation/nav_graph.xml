@@ -14,6 +14,14 @@
     </fragment>
     <fragment
         android:id="@+id/loggedInFragment"
-        android:name="com.example.ezev.views.LoggedInFragment"
-        android:label="LoggedInFragment" />
+        android:name="com.example.ezev.views.HomePage"
+        android:label="LoggedInFragment" >
+        <action
+            android:id="@+id/action_loggedInFragment_to_fragment_map_1"
+            app:destination="@id/fragment_map_1" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_map_1"
+        android:name="com.example.ezev.views.FragmentMap1"
+        android:label="RoutedFragment" />
 </navigation>
