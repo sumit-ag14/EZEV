@@ -41,7 +41,7 @@ public class LoginRegisterFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
                     if(isVendor == false)
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_loggedInFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_homePage);
                     else if(isVendor == true)
                         Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);
 

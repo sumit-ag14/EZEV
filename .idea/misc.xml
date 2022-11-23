@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV -back - Copy/app/src/main/res/layout/toolbar_main.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_dehaze_24.xml" value="0.1815" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_home_page.xml" value="0.264" />
@@ -29,13 +30,6 @@
     <option name="state">
       <ProjectState>
         <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.25364583333333335" />
       </ProjectState>
     </option>
   </component>

@@ -25,12 +25,12 @@ public class VendorHomeFragment extends Fragment {
     private static final String TAG = "prak" ;
     private VendorHomeViewModel vendorHomeViewModel;
     private EditText nameEditText;
-    private String userId;
+//    private String userId;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          vendorHomeViewModel = new ViewModelProvider(this).get(VendorHomeViewModel.class);
-        userId = vendorHomeViewModel.getUserDetails1();
+//        userId = vendorHomeViewModel.getUserDetails1();
     }
 
     @Nullable
@@ -41,7 +41,7 @@ public class VendorHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_vendor_home, container, false);
         nameEditText =  view.findViewById(R.id.textView5);
 //        nameEditText.setText(userId);
-        Log.d(TAG,userId);
+//        Log.d(TAG,userId);
         return view;
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginRegisterFragment">
 
@@ -8,20 +9,22 @@
         android:id="@+id/loginRegisterFragment"
         android:name="com.example.ezev.views.LoginRegisterFragment"
         android:label="LoginRegisterFragment" >
+
+
         <action
-            android:id="@+id/action_loginRegisterFragment_to_loggedInFragment"
-            app:destination="@id/loggedInFragment" />
+            android:id="@+id/action_loginRegisterFragment_to_vendorHomeFragment"
+            app:destination="@id/vendorHomeFragment" />
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
-        android:id="@+id/loggedInFragment"
+        android:id="@+id/vendorHomeFragment"
+        android:name="com.example.ezev.views.VendorHomeFragment"
+        android:label="fragment_vendor_home"
+        tools:layout="@layout/fragment_vendor_home" />
+    <fragment
+        android:id="@+id/homePage"
         android:name="com.example.ezev.views.HomePage"
-        android:label="LoggedInFragment" >
-        <action
-            android:id="@+id/action_loggedInFragment_to_fragment_map_1"
-            app:destination="@id/fragment_map_1" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_map_1"
-        android:name="com.example.ezev.views.FragmentMap1"
-        android:label="RoutedFragment" />
+        android:label="HomePage" />
 </navigation>
