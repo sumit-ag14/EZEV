@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ public class LoginRegisterFragment extends Fragment {
     private EditText phoneNumberEditText;
     private EditText nameEditText;
     private LoginRegisterViewModel loginRegisterViewModel;
+    private Switch vendorSwitch;
+    private boolean isVendor;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,10 @@ public class LoginRegisterFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
+                    if(isVendor == false)
                     Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_loggedInFragment);
+                    else
+                        Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);
 
                 }
             }
@@ -55,16 +61,18 @@ public class LoginRegisterFragment extends Fragment {
         registerButton = view.findViewById(R.id.fragment_loginregister_register);
         phoneNumberEditText = view.findViewById(R.id.fragment_loginregister_phone);
         nameEditText = view.findViewById(R.id.fragment_loginregister_name);
-        
+        vendorSwitch = view.findViewById(R.id.switch1);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
+                isVendor = vendorSwitch.isChecked();
 
                 if (email.length() > 0 && password.length() > 0) {
-                    loginRegisterViewModel.login(email, password);
+                    loginRegisterViewModel.login(email, password,isVendor);
                 } else {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
                 }
@@ -78,8 +86,9 @@ public class LoginRegisterFragment extends Fragment {
                 String password = passwordEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String name = nameEditText.getText().toString();
+                isVendor = vendorSwitch.isChecked();
                 if (email.length() > 0 && password.length() > 0 && name.length()>0 && phoneNumber.length()>0) {
-                        loginRegisterViewModel.register(email, password,name,phoneNumber);
+                        loginRegisterViewModel.register(email, password,name,phoneNumber,isVendor);
                 } else {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
                 }

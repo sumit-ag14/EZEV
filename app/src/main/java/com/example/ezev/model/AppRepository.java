@@ -34,7 +34,7 @@ public class AppRepository {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
     }
-    public void login(String email,String password){
+    public void login(String email,String password,boolean isVendor){
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -49,28 +49,49 @@ public class AppRepository {
                     }
                 });
     }
-    public void register(String email, String password,String name,String phoneNumber){
+    public void register(String email, String password,String name,String phoneNumber,boolean isVendor){
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, String.valueOf(isVendor));
                         if(task.isSuccessful()){
 
 
-                            userId = firebaseAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
-                            HashMap<String,Object> hash = new HashMap<>();
-                            hash.put("full_name",name);
-                            hash.put("phone_number",phoneNumber);
-                            hash.put("email",email);
-                            documentReference.set(hash).addOnSuccessListener(
-                                    new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            Log.i(TAG, "onSuccess: ");
+                            if(isVendor == false){
+                                userId = firebaseAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
+                                HashMap<String,Object> hash = new HashMap<>();
+                                hash.put("full_name",name);
+                                hash.put("phone_number",phoneNumber);
+                                hash.put("email",email);
+                                documentReference.set(hash).addOnSuccessListener(
+                                        new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.i(TAG, "onSuccess: ");
+                                            }
                                         }
-                                    }
-                            );
+                                );
+                            }
+                            else{
+
+                                userId = firebaseAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = firebaseFirestore.collection("vendors").document(userId);
+                                HashMap<String,Object> hash = new HashMap<>();
+                                hash.put("full_name",name);
+                                hash.put("phone_number",phoneNumber);
+                                hash.put("email",email);
+                                documentReference.set(hash).addOnSuccessListener(
+                                        new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.i(TAG, "onSuccess: ");
+                                            }
+                                        }
+                                );
+
+                            }
                             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
                         }
                         else{

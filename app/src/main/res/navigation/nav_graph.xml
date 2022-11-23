@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginRegisterFragment">
 
@@ -11,9 +12,17 @@
         <action
             android:id="@+id/action_loginRegisterFragment_to_loggedInFragment"
             app:destination="@id/loggedInFragment" />
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_vendorHomeFragment"
+            app:destination="@id/vendorHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loggedInFragment"
         android:name="com.example.ezev.views.LoggedInFragment"
         android:label="LoggedInFragment" />
+    <fragment
+        android:id="@+id/vendorHomeFragment"
+        android:name="com.example.ezev.views.VendorHomeFragment"
+        android:label="fragment_vendor_home"
+        tools:layout="@layout/fragment_vendor_home" />
 </navigation>
