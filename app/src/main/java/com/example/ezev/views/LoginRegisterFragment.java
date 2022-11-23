@@ -42,7 +42,7 @@ public class LoginRegisterFragment extends Fragment {
                 if(firebaseUser!=null){
                     if(isVendor == false)
                     Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_loggedInFragment);
-                    else
+                    else if(isVendor == true)
                         Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);
 
                 }

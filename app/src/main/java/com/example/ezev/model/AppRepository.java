@@ -3,6 +3,7 @@ package com.example.ezev.model;
 import android.app.Application;
 import android.os.Build;
 import android.util.Log;
+import android.util.Pair;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AppRepository {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
+    private Map<String,String> userDetails;
     private FirebaseFirestore firebaseFirestore;
     private String userId;
     private static final String TAG = "success";
@@ -57,14 +60,15 @@ public class AppRepository {
                         Log.d(TAG, String.valueOf(isVendor));
                         if(task.isSuccessful()){
 
-
                             if(isVendor == false){
                                 userId = firebaseAuth.getCurrentUser().getUid();
+
                                 DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
                                 HashMap<String,Object> hash = new HashMap<>();
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);
                                 hash.put("email",email);
+
                                 documentReference.set(hash).addOnSuccessListener(
                                         new OnSuccessListener<Void>() {
                                             @Override
@@ -82,6 +86,10 @@ public class AppRepository {
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);
                                 hash.put("email",email);
+                                userDetails = new HashMap<>();
+                                userDetails.put("full_name",name);
+                                userDetails.put("phone_number",phoneNumber);
+                                userDetails.put("email",email);
                                 documentReference.set(hash).addOnSuccessListener(
                                         new OnSuccessListener<Void>() {
                                             @Override
@@ -103,5 +111,9 @@ public class AppRepository {
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;
+    }
+
+    public String getUserDetails() {
+        return userId;
     }
 }
