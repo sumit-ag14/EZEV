@@ -26,7 +26,6 @@ public class AppRepository {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
-    private Map<String,String> userDetails;
     private FirebaseFirestore firebaseFirestore;
     private String userId;
     private static final String TAG = "success";
@@ -86,10 +85,6 @@ public class AppRepository {
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);
                                 hash.put("email",email);
-                                userDetails = new HashMap<>();
-                                userDetails.put("full_name",name);
-                                userDetails.put("phone_number",phoneNumber);
-                                userDetails.put("email",email);
                                 documentReference.set(hash).addOnSuccessListener(
                                         new OnSuccessListener<Void>() {
                                             @Override
@@ -113,7 +108,5 @@ public class AppRepository {
         return userMutableLiveData;
     }
 
-    public String getUserDetails() {
-        return userId;
-    }
+
 }

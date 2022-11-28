@@ -22,7 +22,14 @@
         android:id="@+id/vendorHomeFragment"
         android:name="com.example.ezev.views.VendorHomeFragment"
         android:label="fragment_vendor_home"
-        tools:layout="@layout/fragment_vendor_home" />
+        tools:layout="@layout/fragment_vendor_home" >
+        <argument
+            android:name="uuID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_vendorHomeFragment_to_loginRegisterFragment"
+            app:destination="@id/loginRegisterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homePage"
         android:name="com.example.ezev.views.HomePage"
