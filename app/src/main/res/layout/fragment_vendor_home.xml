@@ -14,55 +14,61 @@
             android:id="@+id/textView5"
             android:layout_width="95dp"
             android:layout_height="28dp"
-            android:layout_marginTop="296dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="90dp"
-            android:layout_height="31dp"
+            android:layout_width="95dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="20dp"
-            android:text="Email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            android:text="Address"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="95dp"
             android:layout_height="28dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
             android:text="Phone Number"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName3"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="95dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:text="Price"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Spinner
             android:id="@+id/spinnerChargerType"
             android:layout_width="287dp"
             android:layout_height="48dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="12dp"
             android:entries="@array/items_class"
+            android:text="Charger Type"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.669"
+            app:layout_constraintHorizontal_bias="0.588"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="150dp"
-            android:layout_height="53dp"
-            android:text="Available"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerChargerType"
-            app:layout_constraintVertical_bias="0.116" />
 
         <Button
             android:id="@+id/buttonUpdate"
@@ -71,69 +77,96 @@
             android:text="Update details "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton"
-            app:layout_constraintVertical_bias="0.159" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonDeRegister"
+            app:layout_constraintVertical_bias="0.636" />
 
         <Button
             android:id="@+id/buttonDeRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="DEREGISTER"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton"
-            app:layout_constraintVertical_bias="0.818" />
+            app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="194dp"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
-            android:layout_width="205dp"
+            android:layout_width="194dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Email"
+            android:text="Address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
-            android:layout_width="208dp"
+            android:layout_width="194dp"
             android:layout_height="48dp"
+            android:layout_marginEnd="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName4"
+            android:layout_width="194dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="40dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Phone no."
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="134dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="144dp"
+            android:text="Parking"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerChargerType" />
+
+        <Switch
+            android:id="@+id/switch3"
+            android:layout_width="134dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="144dp"
+            android:text="Station Not Available"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="108dp"
+            android:src="@drawable/screenshot_2022_11_28_190018"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
