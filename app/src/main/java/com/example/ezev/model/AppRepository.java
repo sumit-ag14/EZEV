@@ -3,6 +3,7 @@ package com.example.ezev.model;
 import android.app.Application;
 import android.os.Build;
 import android.util.Log;
+import android.util.Pair;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AppRepository {
     private Application application;
@@ -57,14 +59,15 @@ public class AppRepository {
                         Log.d(TAG, String.valueOf(isVendor));
                         if(task.isSuccessful()){
 
-
                             if(isVendor == false){
                                 userId = firebaseAuth.getCurrentUser().getUid();
+
                                 DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
                                 HashMap<String,Object> hash = new HashMap<>();
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);
                                 hash.put("email",email);
+
                                 documentReference.set(hash).addOnSuccessListener(
                                         new OnSuccessListener<Void>() {
                                             @Override
@@ -104,4 +107,6 @@ public class AppRepository {
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;
     }
+
+
 }

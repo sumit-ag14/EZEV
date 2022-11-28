@@ -15,10 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.ezev.R;
 import com.example.ezev.viewmodel.LoginRegisterViewModel;
+import com.example.ezev.viewmodel.VendorHomeViewModel;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,6 +34,7 @@ public class LoginRegisterFragment extends Fragment {
     private LoginRegisterViewModel loginRegisterViewModel;
     private Switch vendorSwitch;
     private boolean isVendor;
+    private String userId;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +43,15 @@ public class LoginRegisterFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
+                    VendorHomeFragment.userId= firebaseUser.getUid();
                     if(isVendor == false)
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_loggedInFragment);
-                    else
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_homePage);
+                    else if(isVendor == true){
                         Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);
+
+
+                    }
+
 
                 }
             }
@@ -96,5 +104,13 @@ public class LoginRegisterFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

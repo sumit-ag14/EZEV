@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:title="Home"
+            />
+
+        <item android:id="@+id/nav_transactions"
+            android:title="Transactions"
+            />
+        <item android:id="@+id/nav_cs"
+            android:title="Charging Stations"
+            />
+
+        <item android:id="@+id/js"
+            android:title="Join Us"
+            />
+    </group>
+
+
+</menu>
