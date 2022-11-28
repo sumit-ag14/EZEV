@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/header"
-        app:menu="@menu/menu_main"
+        app:menu="@menu/drawer_view"
         android:layout_gravity="start"/>
 
 
@@ -26,6 +26,6 @@
 
     <include
 
-        layout="@layout/toolbar_main"
+        layout="@layout/toolbar"
         android:id="@+id/appbarlayout" />
 </androidx.drawerlayout.widget.DrawerLayout>

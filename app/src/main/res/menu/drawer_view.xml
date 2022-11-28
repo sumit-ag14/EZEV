@@ -3,6 +3,7 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_home"
             android:title="Home"
+            android:checked="true"
             />
 
         <item android:id="@+id/nav_transactions"
@@ -12,7 +13,7 @@
             android:title="Charging Stations"
             />
 
-        <item android:id="@+id/js"
+        <item android:id="@+id/nav_joinUs"
             android:title="Join Us"
             />
     </group>
