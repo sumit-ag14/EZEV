@@ -1,5 +1,7 @@
 package com.example.ezev.views;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ezev.R;
 import com.example.ezev.viewmodel.LoginRegisterViewModel;
@@ -30,9 +34,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -40,30 +47,23 @@ public class VendorHomeFragment extends Fragment {
     private static final String TAG = "prak" ;
     public static  String userId;
     private VendorHomeViewModel vendorHomeViewModel;
-    private TextView nameTextView;
-    private TextView phoneTextView;
-    private TextView emailTextView;
+    private EditText nameTextView;
+    private EditText phoneTextView;
+    private EditText emailTextView;
     private Button deleteButton;
     private FirebaseFirestore firebaseFirestore;
     private Button updateButton;
     private Spinner chargerTypeSpinner;
-    private RadioButton avaiabilityRadio;
+    private Switch avaiabilityRadio;
+    private EditText priceEditText;
+    private EditText addressEditText;
 
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         vendorHomeViewModel = new ViewModelProvider(this).get(VendorHomeViewModel.class);
-         vendorHomeViewModel.getMutableLiveData().observe(this, new Observer<FirebaseUser>() {
-             @Override
-             public void onChanged(FirebaseUser firebaseUser) {
 
-                 if(firebaseUser!=null){
-                     System.out.println(firebaseUser);
-                 }
-             }
-         });
     }
 
     @Nullable
@@ -72,13 +72,15 @@ public class VendorHomeFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_vendor_home, container, false);
-        nameTextView =  view.findViewById(R.id.textView5);
-        emailTextView = view.findViewById(R.id.textView6);
-        phoneTextView = view.findViewById(R.id.textView4);
+        nameTextView =  view.findViewById(R.id.nameEdit);
+//        emailTextView = view.findViewById(R.id.);
+        phoneTextView = view.findViewById(R.id.phoneEdit);
         deleteButton = view.findViewById(R.id.buttonDeRegister);
         updateButton =  view.findViewById(R.id.buttonUpdate);
         chargerTypeSpinner = view.findViewById(R.id.spinnerChargerType);
-        avaiabilityRadio = view.findViewById(R.id.radioButton);
+        avaiabilityRadio = view.findViewById(R.id.switch3);
+        priceEditText = view.findViewById(R.id.priceEdit);
+         addressEditText =view.findViewById(R.id.addressEdit);
 
 
         firebaseFirestore  = FirebaseFirestore.getInstance();
@@ -91,11 +93,12 @@ public class VendorHomeFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " );
+                        Log.d(TAG, "DocumentSnapshot data: ");
                         Object [] data = document.getData().values().toArray();
                         nameTextView.setText((String)data[0]);
+
                         phoneTextView.setText((String)data[1]);
-                        emailTextView.setText((String) data[2]);
+//                        emailTextView.setText((String) data[2]);
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -131,24 +134,27 @@ public class VendorHomeFragment extends Fragment {
             public void onClick(View view) {
                 Map<String, Object> data = new HashMap<>();
                 data.put("charger_type",chargerTypeSpinner.getSelectedItem().toString() );
-                if(avaiabilityRadio.isChecked()){
+                data.put("price",Integer.parseInt(priceEditText.getText().toString()));
+                if(!avaiabilityRadio.isChecked()){
                     data.put("avaiability",(boolean)true);
                 }
                 else{
                     data.put("avaiability",(boolean)false);
                 }
-                docRef.collection("details")
-                        .add(data)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                Geocoder geocoder = new Geocoder(getContext());
+                try {
+                    List<Address> results = geocoder.getFromLocationName(addressEditText.getText().toString(),1);
+                    GeoPoint geoPoint = new GeoPoint(results.get(0).getLatitude(),results.get(0).getLongitude());
+                    data.put("loc",geoPoint);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                docRef
+                        .update(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
+                            public void onSuccess(Void unused) {
+                                System.out.println("detail");
                             }
                         });
             }

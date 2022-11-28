@@ -60,7 +60,6 @@ public class AppRepository {
                         if(task.isSuccessful()){
 
                             if(isVendor == false){
-                                userId = firebaseAuth.getCurrentUser().getUid();
 
                                 DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
                                 HashMap<String,Object> hash = new HashMap<>();
