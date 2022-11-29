@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.ezev.HomeFragment;
 import com.example.ezev.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -41,6 +40,16 @@ public class HomeActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+
+        Class fragmentClass=HomeFragment.class;
+        Fragment fragment = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
