@@ -7,10 +7,6 @@
     tools:context=".BookNow">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -101,7 +97,7 @@
             android:layout_width="135dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"
-            android:text="Start_End_Time"
+            android:text="Start Time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
@@ -180,6 +176,16 @@
             android:src="@drawable/whatsapp_image_2022_10_15_at_15_55_01"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="135dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="40dp"
+            android:text="End Time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
