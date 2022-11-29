@@ -1,4 +1,4 @@
-package com.example.ezev;
+package com.example.ezev.views;
 
 import android.app.Activity;
 

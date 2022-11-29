@@ -1,5 +1,6 @@
 package com.example.ezev.views;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -44,8 +45,12 @@ public class LoginRegisterFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
                     VendorHomeFragment.userId= firebaseUser.getUid();
-                    if(isVendor == false)
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_homePage);
+                    if(isVendor == false) {
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+//                        Navigation.findNavController(getView()).navigate(R.id
+//                        .action_loginRegisterFragment_to_homePage);
+                    }
                     else if(isVendor == true){
                         Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);
 
