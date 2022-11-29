@@ -1,5 +1,6 @@
 package com.example.ezev.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ezev.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -40,7 +43,8 @@ public class HomeActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
-
+//        nvDrawer = new ActionBarDrawerToggle(this, mBinding.drawerLayout, toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
         Class fragmentClass=HomeFragment.class;
         Fragment fragment = null;
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -50,6 +54,13 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        //Bottom Navigation
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        bottomNav.setOnItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
+                new HomeFragment()).commit();
+
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -110,4 +121,28 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    // Bottom navigation
+    private NavigationBarView.OnItemSelectedListener navListener =
+            new NavigationBarView.OnItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+
+                    switch (item.getItemId()) {
+                        case R.id.home:
+                            selectedFragment = new HomeFragment();
+                            break;
+                        case R.id.transaction:
+                            selectedFragment = new JoinUs();// replace with Transation fragment
+                            break;
+                        case R.id.profile:
+                            selectedFragment = new JoinUs();// replace with Profile fragment
+                            break;
+                    }
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
+                            selectedFragment).commit();
+                    return true;
+                }
+            };
 }
