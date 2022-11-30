@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -74,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
-        Class fragmentClass;
+        Class fragmentClass=HomeFragment.class;
         switch(menuItem.getItemId()) {
             case R.id.nav_home:
                 fragmentClass = HomeFragment.class;
@@ -87,6 +88,11 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_joinUs:
                 fragmentClass = JoinUs.class;
+                break;
+            case R.id.logout: {
+                Intent intent=new Intent(this,MainActivity.class);
+                startActivity(intent);
+            }
                 break;
             default:
                 fragmentClass = HomeFragment.class;

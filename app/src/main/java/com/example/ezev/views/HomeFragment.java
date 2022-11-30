@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -75,10 +76,28 @@ public class HomeFragment extends Fragment {
          book.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-//                 System.out.println("book now");
+                 Fragment fragment = null;
+                 Class fragmentClass=BookNowFragment.class;
+                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                 try {
+                     fragment = (Fragment) fragmentClass.newInstance();
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
              }
 
          });
+
+        ImageButton becomeVendor = view.findViewById(R.id.becomeVender);
+        becomeVendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent=new Intent(view.getContext(),MainActivity.class);
+               startActivity(intent);
+            }
+
+        });
         return view;
     }
 
