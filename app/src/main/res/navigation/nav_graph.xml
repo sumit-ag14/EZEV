@@ -15,8 +15,11 @@
             android:id="@+id/action_loginRegisterFragment_to_vendorHomeFragment"
             app:destination="@id/vendorHomeFragment" />
         <action
-            android:id="@+id/action_loginRegisterFragment_to_homePage"
-            app:destination="@id/homePage" />
+            android:id="@+id/action_loginRegisterFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_bookNowFragment"
+            app:destination="@id/bookNowFragment" />
     </fragment>
     <fragment
         android:id="@+id/vendorHomeFragment"
@@ -31,7 +34,16 @@
             app:destination="@id/loginRegisterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homePage"
-        android:name="com.example.ezev.views.HomePage"
-        android:label="HomePage" />
+        android:id="@+id/bookNowFragment"
+        android:name="com.example.ezev.views.BookNowFragment"
+        android:label="fragment_book_now"
+        tools:layout="@layout/fragment_book_now" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ezev.views.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_bookNowFragment"
+            app:destination="@id/bookNowFragment" />
+    </fragment>
 </navigation>

@@ -43,8 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
-//        nvDrawer = new ActionBarDrawerToggle(this, mBinding.drawerLayout, toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
+
         Class fragmentClass=HomeFragment.class;
         Fragment fragment = null;
         FragmentManager fragmentManager = getSupportFragmentManager();
