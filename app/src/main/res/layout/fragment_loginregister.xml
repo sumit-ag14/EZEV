@@ -10,7 +10,6 @@
         android:id="@+id/fragment_loginregister_email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="ezev@gmail.com"
         android:inputType="textEmailAddress"
@@ -18,13 +17,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <EditText
         android:id="@+id/fragment_loginregister_password"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="**********"
         android:inputType="textPassword"
@@ -32,13 +30,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_email" />
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <EditText
         android:id="@+id/fragment_loginregister_name"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="EZEV"
         android:inputType="textPersonName"
@@ -46,13 +43,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
         android:id="@+id/fragment_loginregister_phone"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="9191919191"
         android:inputType="number"
@@ -60,28 +56,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_name" />
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <Button
         android:id="@+id/fragment_loginregister_login"
         android:layout_width="190dp"
         android:layout_height="51dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="120dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <Button
         android:id="@+id/fragment_loginregister_register"
         android:layout_width="190dp"
         android:layout_height="51dp"
-        android:layout_marginTop="84dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_login" />
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <Switch
         android:id="@+id/switch1"
@@ -99,60 +94,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
         android:text="Email:"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_email"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
         android:text="Password:"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_password"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_email" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
         android:text="Name:"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_name"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_password" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
         android:text="Phone No.:"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_phone"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_loginregister_name" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
         android:text="Already Registered?"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_login"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
         android:text="Don't have an account?"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_loginregister_register"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <TextView
         android:id="@+id/textView24"
