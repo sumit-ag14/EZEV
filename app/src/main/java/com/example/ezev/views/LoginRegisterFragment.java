@@ -45,11 +45,11 @@ public class LoginRegisterFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
                     VendorHomeFragment.userId= firebaseUser.getUid();
+                    BookNowFragment.userId = firebaseUser.getUid();
                     if(isVendor == false) {
-                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        Intent intent = new Intent(getActivity(), VendorList.class);
                         startActivity(intent);
-//                        Navigation.findNavController(getView()).navigate(R.id
-//                        .action_loginRegisterFragment_to_homePage);
+//                        Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to);
                     }
                     else if(isVendor == true){
                         Navigation.findNavController(getView()).navigate(R.id.action_loginRegisterFragment_to_vendorHomeFragment);

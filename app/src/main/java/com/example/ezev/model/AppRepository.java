@@ -27,7 +27,7 @@ public class AppRepository {
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
     private FirebaseFirestore firebaseFirestore;
-    private String userId;
+    private String currUser;
     private static final String TAG = "success";
     public AppRepository(Application application) {
         this.application = application;
@@ -56,12 +56,12 @@ public class AppRepository {
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, String.valueOf(isVendor));
+//                        Log.d(TAG, String.valueOf(isVendor));
                         if(task.isSuccessful()){
 
                             if(isVendor == false){
-
-                                DocumentReference documentReference = firebaseFirestore.collection("users").document(userId);
+                                currUser = firebaseAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = firebaseFirestore.collection("users").document(currUser);
                                 HashMap<String,Object> hash = new HashMap<>();
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);
@@ -78,8 +78,8 @@ public class AppRepository {
                             }
                             else{
 
-                                userId = firebaseAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = firebaseFirestore.collection("vendors").document(userId);
+                                currUser = firebaseAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = firebaseFirestore.collection("vendors").document(currUser);
                                 HashMap<String,Object> hash = new HashMap<>();
                                 hash.put("full_name",name);
                                 hash.put("phone_number",phoneNumber);

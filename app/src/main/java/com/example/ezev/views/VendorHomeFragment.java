@@ -41,6 +41,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class VendorHomeFragment extends Fragment {
@@ -94,14 +95,17 @@ public class VendorHomeFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: ");
-                        Object [] data = document.getData().values().toArray();
-                        nameTextView.setText((String)data[0]);
-
-                        phoneTextView.setText((String)data[1]);
-//                        emailTextView.setText((String) data[2]);
+//                        Object [] data = Objects.requireNonNull(document.getData()).values().toArray();
+//                        System.out.println((String)data[0]);
+                        System.out.println(document.getString("full_name"));
+                        nameTextView.setText(document.getString("full_name"));
+////                        System.out.println(data[0);
+                        phoneTextView.setText(document.getString("phone_number"));
+//                        emailTextView.setText((String) data[2])
 
                     } else {
                         Log.d(TAG, "No such document");
+                        System.out.println(""+userId);
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
@@ -133,6 +137,8 @@ public class VendorHomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Map<String, Object> data = new HashMap<>();
+                data.put("full_name",nameTextView.getText().toString());
+                data.put("phone_number",phoneTextView.getText().toString());
                 data.put("charger_type",chargerTypeSpinner.getSelectedItem().toString() );
                 data.put("price",Integer.parseInt(priceEditText.getText().toString()));
                 if(!avaiabilityRadio.isChecked()){

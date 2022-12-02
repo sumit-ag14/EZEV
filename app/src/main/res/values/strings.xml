@@ -8,6 +8,10 @@
         <item>DC CHAdeMo</item>
         <item>CCS</item>
     </string-array>
+    <string-array name="filters">
+        <item>Distance</item>
+        <item>Price</item>
+    </string-array>
     <string name="navigation_drawer_open">open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->

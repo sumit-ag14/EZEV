@@ -1,12 +1,16 @@
 package com.example.ezev.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.ezev.R;
 
@@ -66,7 +70,35 @@ public class HomeFragment extends Fragment {
 //        ImageButton b2=(ImageButton) view.findViewById(R.id.becomeVender);
 //        ImageButton b3=(ImageButton)  view.findViewById(R.id.transactions);
 //        ImageButton b4=(ImageButton)  view.findViewById(R.id.aboutUs);
+//        View view=getView();
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+         ImageButton book = view.findViewById(R.id.findCharging);
+         book.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Fragment fragment = null;
+                 Class fragmentClass=BookNowFragment.class;
+                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                 try {
+                     fragment = (Fragment) fragmentClass.newInstance();
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+             }
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+         });
+
+        ImageButton becomeVendor = view.findViewById(R.id.becomeVender);
+        becomeVendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent=new Intent(view.getContext(),MainActivity.class);
+               startActivity(intent);
+            }
+
+        });
+        return view;
     }
+
 }

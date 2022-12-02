@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/appTheme">
+        <activity android:name=".views.VendorList"
+            android:exported="true"/>
         <activity
             android:name=".views.HomeActivity"
             android:exported="true" />
@@ -21,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_8O12Via1Qo6HlV"/>
     </application>
 
 </manifest>
