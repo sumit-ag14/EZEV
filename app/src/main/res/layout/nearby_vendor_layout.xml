@@ -25,17 +25,18 @@
 
             <Button
                 android:id="@+id/availabe_notavailable"
-                android:layout_width="8dp"
-                android:layout_height="43dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="0.5"
-                android:backgroundTint="#DD1414"
+                android:backgroundTint="#B2FF59"
                 android:paddingTop="44dp"
                 android:text=" "
                 card_view:cornerRadius="100in"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -48,6 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
                     android:text="Vendor Name"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -56,11 +58,47 @@
                     android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="3dp"
                     android:text="Vendor Price"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Address"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:text="Distance"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/directions"
+                    android:layout_width="40dp"
+                    android:layout_height="33dp"
+
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/teal_200"
+                    android:src="@drawable/ic_baseline_directions_24"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

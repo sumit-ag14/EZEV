@@ -14,11 +14,11 @@
             android:id="@+id/textView5"
             android:layout_width="95dp"
             android:layout_height="28dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="16dp"
             android:text="Name"
             app:layout_constraintEnd_toStartOf="@+id/nameEdit"
-            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintHorizontal_bias="0.549"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -36,8 +36,8 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="95dp"
-            android:layout_height="28dp"
+            android:layout_width="105dp"
+            android:layout_height="42dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="20dp"
             android:text="Phone Number"
@@ -75,18 +75,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update details "
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonDeRegister"
-            app:layout_constraintVertical_bias="0.636" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/buttonDeRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="5dp"
             android:text="DEREGISTER"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -139,22 +139,11 @@
             app:layout_constraintTop_toBottomOf="@+id/addressEdit"  />
 
         <Switch
-            android:id="@+id/switch2"
-            android:layout_width="134dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="24dp"
-            android:text="Parking"
-            app:layout_constraintEnd_toStartOf="@+id/switch3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerChargerType" />
-
-        <Switch
             android:id="@+id/switch3"
             android:layout_width="134dp"
             android:layout_height="57dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="132dp"
             android:text="Station Not Available"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerChargerType" />
@@ -169,31 +158,57 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextStartTime"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="28dp"
-            android:ems="10"
-            android:inputType="time"
+
+        <ImageButton
+            android:id="@+id/pick_time_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="492dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_baseline_date_range_24"
             android:text="Start Time"
-            app:layout_constraintEnd_toStartOf="@+id/editTextEndTime"
-            app:layout_constraintHorizontal_bias="0.973"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.165"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch2" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextEndTime"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
+            android:id="@+id/editTextStartTime"
+            android:layout_width="146dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
             android:ems="10"
-            android:inputType="time"
-            android:text="End Time"
+            android:focusable="false"
+            android:clickable="false"
+            android:hint="Start Time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
+        <ImageButton
+            android:id="@+id/end_time_button"
+            android:layout_width="53dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="552dp"
+            android:src="@drawable/ic_baseline_date_range_24"
+            android:text="End Time"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextEndTime"
+            android:layout_width="135dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="100dp"
+            android:ems="10"
+            android:focusable="false"
+            android:clickable="false"
+            android:hint="End Time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

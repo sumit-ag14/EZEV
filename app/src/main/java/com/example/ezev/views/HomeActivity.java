@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
-
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_dehaze_24 );
         Class fragmentClass=HomeFragment.class;
         Fragment fragment = null;
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -60,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
                 new HomeFragment()).commit();
+
 
     }
     private void setupDrawerContent(NavigationView navigationView) {

@@ -4,13 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV -back - Copy/app/src/main/res/layout/toolbar_main.xml" value="0.25" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.1585" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.1595" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_charging_station_24.xml" value="0.1595" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.1585" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_dehaze_24.xml" value="0.1815" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_directions_24.xml" value="0.1585" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1595" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1595" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/activity_get_location.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/activity_vendor_list.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_book_now.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_home_page.xml" value="0.264" />
@@ -19,7 +24,11 @@
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_map1.xml" value="0.234375" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_transactions.xml" value="0.25" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/fragment_vendor_home.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/header.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/join_us.xml" value="0.25" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/nearby_vendor_layout.xml" value="0.28098907470703127" />
+        <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/recycler_view_row.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/toolbar.xml" value="0.25" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/layout/toolbar_main.xml" value="0.20074349442379183" />
         <entry key="..\:/Users/agarw/AndroidStudioProjects/EZEV/app/src/main/res/menu/drawer_bottom.xml" value="0.25" />

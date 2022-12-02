@@ -1,5 +1,6 @@
 package com.example.ezev.views;
 
+import android.app.TimePickerDialog;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -17,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.ezev.R;
@@ -36,12 +39,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 public class VendorHomeFragment extends Fragment {
@@ -58,9 +66,10 @@ public class VendorHomeFragment extends Fragment {
     private Switch avaiabilityRadio;
     private EditText priceEditText;
     private EditText addressEditText;
-
-
-
+    private ImageButton pickStartTime;
+    private ImageButton pickEndTime;
+    private EditText startTime;
+    private EditText endTime;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +91,8 @@ public class VendorHomeFragment extends Fragment {
         avaiabilityRadio = view.findViewById(R.id.switch3);
         priceEditText = view.findViewById(R.id.priceEdit);
          addressEditText =view.findViewById(R.id.addressEdit);
-
+        startTime= view.findViewById(R.id.editTextStartTime);
+       endTime= view.findViewById(R.id.editTextEndTime);
 
         firebaseFirestore  = FirebaseFirestore.getInstance();
         System.out.println(userId);
@@ -165,8 +175,56 @@ public class VendorHomeFragment extends Fragment {
                         });
             }
         });
+        pickStartTime=(ImageButton) view.findViewById(R.id.pick_time_button);
+        pickEndTime=(ImageButton) view.findViewById(R.id.end_time_button);
+        pickStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar=Calendar.getInstance();
+                int hours=calendar.get(Calendar.HOUR_OF_DAY);
+                int min=calendar.get(Calendar.MINUTE);
+                TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(),
+                        com.razorpay.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        Calendar c=Calendar.getInstance();
+                        c.set(Calendar.HOUR_OF_DAY,i);
+                        c.set(Calendar.MINUTE,i1);
+                        c.setTimeZone(TimeZone.getDefault());
+                        SimpleDateFormat format=new SimpleDateFormat("k:mm a");
+                        String time=format.format(c.getTime());
 
+                        startTime.setText(time);
+                        Log.d("lodu",time);
+                    }
+                },hours,min,false);
+                timePickerDialog.show();
+            }
+        });
+        pickEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar=Calendar.getInstance();
+                int hours=calendar.get(Calendar.HOUR_OF_DAY);
+                int min=calendar.get(Calendar.MINUTE);
+                TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(),
+                        com.razorpay.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        Calendar c=Calendar.getInstance();
+                        c.set(Calendar.HOUR_OF_DAY,i);
+                        c.set(Calendar.MINUTE,i1);
+                        c.setTimeZone(TimeZone.getDefault());
+                        SimpleDateFormat format=new SimpleDateFormat("k:mm a");
+                        String time=format.format(c.getTime());
 
+                        endTime.setText(time);
+                        Log.d("lodu",time);
+                    }
+                },hours,min,false);
+                timePickerDialog.show();
+            }
+        });
 
 //
         return view;

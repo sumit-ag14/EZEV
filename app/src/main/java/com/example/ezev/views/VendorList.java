@@ -114,10 +114,13 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
                     //j--;
                 }
                 Log.d("Tawish","here");
-                for (Map.Entry< Double, VendorDetails> e : ht1.entrySet())
+                for (Map.Entry< Double, VendorDetails> e : ht1.entrySet()) {
+                    e.getValue().setDistance(e.getKey());
                     sorted_with_distance.add(e.getValue());
+                }
                 //<<--------------------------Sorting ends------------------------------->
 
+                vendordetails_list=sorted_with_distance;
 
                 //<---------------------------Sorting done here with distance--------------------------->
                 TreeMap<Integer, VendorDetails> ht2 = new TreeMap<>();
@@ -170,21 +173,18 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice=adapterView.getItemAtPosition(i).toString();
         //Toast.makeText(getApplicationContext(),choice,Toast.LENGTH_LONG).show();
-        list_to_be_shown=sorted_with_price;
-        vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
-        recyclerView.setAdapter(vendorAdapter);
+
         if(choice.equals("Price")){
             list_to_be_shown=sorted_with_price;
-//            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
-//            recyclerView.setAdapter(vendorAdapter);
+            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
+            recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
             recyclerView.invalidate();
         }else{
             list_to_be_shown=sorted_with_distance;
-//            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
-//            recyclerView.setAdapter(vendorAdapter);
+            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
+            recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
-
             recyclerView.invalidate();
         }
 

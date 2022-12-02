@@ -6,11 +6,18 @@ public class VendorDetails {
 
     boolean avaiability;
     String full_name,charger_type,email,phone_number;
-    Integer price;
+    Integer price; Double distance;
     GeoPoint loc;
 
-    public String getFull_name() {
-        return full_name;
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+
+    public String getFull_name() {  return full_name;
     }
 
     public String getCharger_type() {
@@ -35,10 +42,13 @@ public class VendorDetails {
 
     //Integer distance;
     public  VendorDetails(){
-        avaiability=true;
+        //avaiability=true;
     }
 
-//    public String getAddress() {
+    public boolean isAvaiability() {
+        return avaiability;
+    }
+    //    public String getAddress() {
 //        return address;
 //    }
 //

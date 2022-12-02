@@ -76,17 +76,22 @@ public class HomeFragment extends Fragment {
          book.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 Fragment fragment = null;
-                 Class fragmentClass=BookNowFragment.class;
-                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                 try {
-                     fragment = (Fragment) fragmentClass.newInstance();
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 }
-                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-             }
+                 //Goto Book Fragment
 
+//                 Fragment fragment = null;
+//                 Class fragmentClass=BookNowFragment.class;
+//                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                 try {
+//                     fragment = (Fragment) fragmentClass.newInstance();
+//                 } catch (Exception e) {
+//                     e.printStackTrace();
+//                 }
+//                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+//             }
+                 Intent intent=new Intent(view.getContext(),VendorList.class);
+                 startActivity(intent);
+
+             }
          });
 
         ImageButton becomeVendor = view.findViewById(R.id.becomeVender);

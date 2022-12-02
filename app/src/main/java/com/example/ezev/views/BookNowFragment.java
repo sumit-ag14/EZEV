@@ -1,11 +1,15 @@
 package com.example.ezev.views;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +29,14 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class BookNowFragment extends Fragment implements PaymentResultListener {
     public static String userId;
     String pn;
     String email;
+    Double latitude;
+    Double longitude;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +60,8 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
                     nameTextView.setText(ds.getString("full_name"));
                     pn = ds.getString("phone_number");
                     email = ds.getString("email");
+//                    latitude = ds.getGeoPoint("loc").getLatitude();
+//                    longitude =  ds.getGeoPoint("loc").getLongitude();
                 } else {
 
                 }
@@ -83,6 +93,19 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
 
             }
         });
+        ImageButton dir =(ImageButton) view.findViewById(R.id.imagebuttonDirections);
+        dir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Uri gmmIntentUri = Uri.parse("google.navigation:q="+23.4561+","+75.4227);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+
+            }
+        });
+
         return view;
     }
 
