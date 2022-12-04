@@ -123,6 +123,20 @@ public class VendorHomeFragment extends Fragment {
                         if(document.get("price")!=null){
                             priceEditText.setText(document.get("price").toString());
                         }
+                        if(document.get("start_time")!=null){
+                            Timestamp ts = (Timestamp) document.get("start_time");
+                            Date ds = ts.toDate();
+                            DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+                            String strTime = dateFormat.format(ds);
+                            startTime.setText(strTime);
+                        }
+                        if(document.get("end_time")!=null){
+                            Timestamp ts = (Timestamp) document.get("end_time");
+                            Date ds = ts.toDate();
+                            DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+                            String strTime = dateFormat.format(ds);
+                            endTime.setText(strTime);
+                        }
 
                         if(document.get("loc")!=null){
                             Geocoder geocoder = new Geocoder(getContext());
