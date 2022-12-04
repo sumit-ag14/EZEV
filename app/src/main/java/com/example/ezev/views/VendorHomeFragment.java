@@ -33,7 +33,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -115,6 +114,30 @@ public class VendorHomeFragment extends Fragment {
 ////                        System.out.println(data[0);
                         phoneTextView.setText(document.getString("phone_number"));
 //                        emailTextView.setText((String) data[2])
+                        if(document.getBoolean("avaiability")!=null){
+                            avaiabilityRadio.setChecked(!document.getBoolean("avaiability"));
+                        }
+                        if(document.get("price")!=null){
+                            priceEditText.setText(document.get("price").toString());
+                        }
+                        if(document.get("loc")!=null){
+                            Geocoder geocoder = new Geocoder(getContext());
+
+                            List<Address> addresses  = null;
+                            try {
+                                GeoPoint geo = (GeoPoint) document.get("loc");
+                                addresses = geocoder.getFromLocation(geo.getLatitude(),
+                                        geo.getLongitude(), 1);
+                                String address = addresses.get(0).getAddressLine(0);
+                                String city = addresses.get(0).getLocality();
+                                String state = addresses.get(0).getAdminArea();
+                                String zip = addresses.get(0).getPostalCode();
+                                String country = addresses.get(0).getCountryName();
+                                addressEditText.setText(address+" "+city+" "+state+" "+country);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -154,7 +177,6 @@ public class VendorHomeFragment extends Fragment {
                 data.put("phone_number",phoneTextView.getText().toString());
                 data.put("charger_type",chargerTypeSpinner.getSelectedItem().toString() );
                 data.put("price",Integer.parseInt(priceEditText.getText().toString()));
-
                 if(!avaiabilityRadio.isChecked()){
                     data.put("avaiability",(boolean)true);
                 }
@@ -164,16 +186,10 @@ public class VendorHomeFragment extends Fragment {
                 Geocoder geocoder = new Geocoder(getContext());
                 try {
                     List<Address> results = geocoder.getFromLocationName(addressEditText.getText().toString(),1);
-
-
-                        GeoPoint geoPoint = new GeoPoint(results.get(0).getLatitude(),results.get(0).getLongitude());
-                        System.out.print(geoPoint.getLatitude());
-                        data.put("loc",geoPoint);
-
-
+                    GeoPoint geoPoint = new GeoPoint(results.get(0).getLatitude(),results.get(0).getLongitude());
+                    data.put("loc",geoPoint);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("howle");
                 }
                 data.put("start_time",timestampStart);
                 data.put("end_time",timestampEnd);
