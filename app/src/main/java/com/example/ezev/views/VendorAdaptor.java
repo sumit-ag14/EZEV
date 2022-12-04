@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ezev.R;
@@ -30,10 +31,12 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
 
     private Context context;
     ArrayList<VendorDetails> vendorDetailsList;
-
-    public VendorAdaptor(Context context, ArrayList<VendorDetails> vendorDetailsList){
+    private SelectListener listener;
+    public VendorAdaptor(Context context, ArrayList<VendorDetails> vendorDetailsList,
+                         SelectListener listener){
         this.context=context;
         this.vendorDetailsList=vendorDetailsList;
+        this.listener=listener;
     }
 
     @NonNull
@@ -84,6 +87,12 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
         } catch (IOException e) {
             e.printStackTrace();
         }
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(vendorDetailsList.get(position));
+            }
+        });
     }
 
     @Override
@@ -96,7 +105,7 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
         TextView name,price,disance,address;
         Button availablity_non_availibility;
         ImageButton imbtn;
-
+        public CardView cardView;
         public VendorViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.name);
@@ -106,6 +115,7 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
             availablity_non_availibility=itemView.findViewById(R.id.availabe_notavailable);
             imbtn=itemView.findViewById(R.id.directions);
             address=itemView.findViewById(R.id.address);
+            cardView=itemView.findViewById(R.id.card_view_listing);
         }
     }
 

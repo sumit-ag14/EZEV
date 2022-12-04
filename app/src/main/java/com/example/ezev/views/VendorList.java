@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class VendorList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class VendorList extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
+        SelectListener {
 
     RecyclerView recyclerView;
     FirebaseFirestore databaseReference;
@@ -176,13 +178,13 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
 
         if(choice.equals("Price")){
             list_to_be_shown=sorted_with_price;
-            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
+            vendorAdapter=new VendorAdaptor(this,list_to_be_shown,this);
             recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
             recyclerView.invalidate();
         }else{
             list_to_be_shown=sorted_with_distance;
-            vendorAdapter=new VendorAdaptor(this,list_to_be_shown);
+            vendorAdapter=new VendorAdaptor(this,list_to_be_shown,this);
             recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
             recyclerView.invalidate();
@@ -193,5 +195,14 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onItemClick(VendorDetails vendorDetails) {
+        Intent intent=new Intent(VendorList.this,BookNowActivity.class);
+        intent.putExtra(BookNowActivity.EXTRA_Name,vendorDetails.full_name);
+        intent.putExtra(BookNowActivity.EXTRA_Price,vendorDetails.price);
+        startActivity(intent);
+//    Toast.makeText(this,vendorDetails.full_name,Toast.LENGTH_SHORT).show();
     }
 }
