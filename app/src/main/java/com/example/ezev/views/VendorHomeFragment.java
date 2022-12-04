@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -70,6 +71,8 @@ public class VendorHomeFragment extends Fragment {
     private ImageButton pickEndTime;
     private EditText startTime;
     private EditText endTime;
+    private Timestamp timestampStart;
+    private Timestamp timestampEnd;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,6 +154,7 @@ public class VendorHomeFragment extends Fragment {
                 data.put("phone_number",phoneTextView.getText().toString());
                 data.put("charger_type",chargerTypeSpinner.getSelectedItem().toString() );
                 data.put("price",Integer.parseInt(priceEditText.getText().toString()));
+
                 if(!avaiabilityRadio.isChecked()){
                     data.put("avaiability",(boolean)true);
                 }
@@ -160,11 +164,19 @@ public class VendorHomeFragment extends Fragment {
                 Geocoder geocoder = new Geocoder(getContext());
                 try {
                     List<Address> results = geocoder.getFromLocationName(addressEditText.getText().toString(),1);
-                    GeoPoint geoPoint = new GeoPoint(results.get(0).getLatitude(),results.get(0).getLongitude());
-                    data.put("loc",geoPoint);
+
+
+                        GeoPoint geoPoint = new GeoPoint(results.get(0).getLatitude(),results.get(0).getLongitude());
+                        System.out.print(geoPoint.getLatitude());
+                        data.put("loc",geoPoint);
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
+                    System.out.println("howle");
                 }
+                data.put("start_time",timestampStart);
+                data.put("end_time",timestampEnd);
 
                 docRef
                         .update(data).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -191,11 +203,12 @@ public class VendorHomeFragment extends Fragment {
                         c.set(Calendar.HOUR_OF_DAY,i);
                         c.set(Calendar.MINUTE,i1);
                         c.setTimeZone(TimeZone.getDefault());
-                        SimpleDateFormat format=new SimpleDateFormat("k:mm a");
-                        String time=format.format(c.getTime());
-
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd kk:mm");
+                        SimpleDateFormat format1=new SimpleDateFormat("kk:mm");
+                        String time=format1.format(c.getTime());
                         startTime.setText(time);
-                        Log.d("lodu",time);
+                        timestampStart = new Timestamp(c.getTime());
+                        System.out.print(timestampStart.toString());
                     }
                 },hours,min,false);
                 timePickerDialog.show();
@@ -215,11 +228,12 @@ public class VendorHomeFragment extends Fragment {
                         c.set(Calendar.HOUR_OF_DAY,i);
                         c.set(Calendar.MINUTE,i1);
                         c.setTimeZone(TimeZone.getDefault());
-                        SimpleDateFormat format=new SimpleDateFormat("k:mm a");
-                        String time=format.format(c.getTime());
-
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd kk:mm");
+                        SimpleDateFormat format1=new SimpleDateFormat("kk:mm");
+                        String time=format1.format(c.getTime());
                         endTime.setText(time);
-                        Log.d("lodu",time);
+                        timestampEnd = new Timestamp(c.getTime());
+                        System.out.print(timestampEnd.toString());
                     }
                 },hours,min,false);
                 timePickerDialog.show();
