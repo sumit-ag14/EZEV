@@ -1,13 +1,16 @@
 package com.example.ezev.views;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
 
 public class VendorDetails {
 
+    String vendorId;
     boolean avaiability;
     String full_name,charger_type,email,phone_number;
     Integer price; Double distance;
     GeoPoint loc;
+    Timestamp start_time, end_time;
 
     public Double getDistance() {
         return distance;
@@ -18,6 +21,22 @@ public class VendorDetails {
     }
 
     public String getFull_name() {  return full_name;
+    }
+
+    public Timestamp getStart_time() {
+        return start_time;
+    }
+
+    public Timestamp getEnd_time() {
+        return end_time;
+    }
+
+    public String getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(String vendorId) {
+        this.vendorId = vendorId;
     }
 
     public String getCharger_type() {
