@@ -45,7 +45,7 @@ public class LoginRegisterFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
                     VendorHomeFragment.userId= firebaseUser.getUid();
-
+                    MyProfile.userId= firebaseUser.getUid();
                     BookNowFragment.userId = firebaseUser.getUid();
                     if(isVendor == false) {
                         Intent intent = new Intent(getActivity(), HomeActivity.class);

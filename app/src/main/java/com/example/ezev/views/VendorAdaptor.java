@@ -27,6 +27,8 @@ import com.google.firebase.Timestamp;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,23 +62,41 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
         holder.disance.setText(Double.toString(vendorDetails.getDistance()).substring(0,7)+" km");
         //Log.d("sumit", Boolean.toString(vendorDetails.getAvailability()));
 
+
+
         //<--------------------------------------Button Color Changer Logic---------------------------------------------->
         Timestamp timestamp=vendorDetails.getStart_time();
         Date ds = timestamp.toDate();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         String strTime = dateFormat.format(ds);
 
+        Timestamp timestamp2=vendorDetails.getEnd_time();
+        Date ds2 = timestamp2.toDate();
+        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
+        String endTime = dateFormat2.format(ds2);
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        Log.d("tawstr", strTime);
+        String curr_time=dtf.format(now);
         //Timestamp curr_timestamp = new Timestamp(System.currentTimeMillis());
         Log.d("timestr", String.valueOf(timestamp.toDate().getTime()));
-        if(vendorDetails.isAvaiability()){
-            Log.d("sumit", "onBindViewHolder: hn mai idhar hu");
-            holder.availablity_non_availibility.setBackgroundColor(rgb(178, 255, 89));
+        if(curr_time.compareTo(strTime)>=0&&curr_time.compareTo(endTime)<=0){
+            if(vendorDetails.isAvaiability()){
+                Log.d("sumit", "onBindViewHolder: hn mai idhar hu");
+                holder.availablity_non_availibility.setBackgroundColor(rgb(178, 255, 89));
+            }else{
+                Log.d("sumit", "onBindViewHolder: hn mai idhar");
+                holder.availablity_non_availibility.setBackgroundColor(rgb(230,74,25));
+            }
+            vendorDetails.setWithin_time(true);
         }else{
-            Log.d("sumit", "onBindViewHolder: hn mai idhar");
-            holder.availablity_non_availibility.setBackgroundColor(rgb(230,74,25));
+            vendorDetails.setWithin_time(false);
+            holder.availablity_non_availibility.setBackgroundColor(Color.GRAY);
         }
+
         //<--------------------------------------Button Color Changer Logic----------------------------------------------->
+
 
 
         //<----------------------------------------Map Implementation----------------------------------------------------->

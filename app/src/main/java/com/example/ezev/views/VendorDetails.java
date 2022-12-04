@@ -7,6 +7,7 @@ public class VendorDetails {
 
     String vendorId;
     boolean avaiability;
+    boolean within_time;
     String full_name,charger_type,email,phone_number;
     Integer price; Double distance;
     GeoPoint loc;
@@ -79,7 +80,15 @@ public class VendorDetails {
         return avaiability;
     }
 
-//    public void setAvailability(Boolean availability) {
+    public boolean isWithin_time() {
+        return within_time;
+    }
+
+    public void setWithin_time(boolean within_time) {
+        this.within_time = within_time;
+    }
+
+    //    public void setAvailability(Boolean availability) {
 //        this.availability = availability;
 //    }
 

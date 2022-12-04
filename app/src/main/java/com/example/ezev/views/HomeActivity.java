@@ -82,13 +82,13 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_transactions:
-                fragmentClass = JoinUs.class;
+                fragmentClass = AboutUs.class;
                 break;
             case R.id.nav_cs:
-                fragmentClass = JoinUs.class;
+                fragmentClass = AboutUs.class;
                 break;
             case R.id.nav_joinUs:
-                fragmentClass = JoinUs.class;
+                fragmentClass = AboutUs.class;
                 break;
             case R.id.logout: {
                 Intent intent=new Intent(this,MainActivity.class);
@@ -139,10 +139,10 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.transaction:
-                            selectedFragment = new JoinUs();// replace with Transation fragment
+                            selectedFragment = new TransactionList();// replace with Transation fragment
                             break;
                         case R.id.profile:
-                            selectedFragment = new JoinUs();// replace with Profile fragment
+                            selectedFragment = new MyProfile();// replace with Profile fragment
                             break;
                     }
 

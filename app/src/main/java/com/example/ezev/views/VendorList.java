@@ -185,13 +185,13 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
             vendorAdapter=new VendorAdaptor(this,list_to_be_shown,this);
             recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
-            recyclerView.invalidate();
+            //recyclerView.invalidate();
         }else{
             list_to_be_shown=sorted_with_distance;
             vendorAdapter=new VendorAdaptor(this,list_to_be_shown,this);
             recyclerView.setAdapter(vendorAdapter);
             vendorAdapter.notifyDataSetChanged();
-            recyclerView.invalidate();
+            //recyclerView.invalidate();
         }
 
     }
