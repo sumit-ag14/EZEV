@@ -29,10 +29,12 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.PrivateKey;
 import java.util.Locale;
 
 public class BookNowFragment extends Fragment implements PaymentResultListener {
     public static String userId;
+    private String uid;
     String pn;
     String email;
     Double latitude;
@@ -107,8 +109,12 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
         });
 
         return view;
+
     }
 
+    public void setUID(String vendorUID){
+        this.uid=vendorUID;
+    }
 
     @Override
     public void onPaymentSuccess(String s) {
