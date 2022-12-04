@@ -208,7 +208,10 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
         BookNowFragment.vid = vendorDetails.getVendorId();
         //intent.putExtra(BookNowActivity.EXTRA_Price,vendorDetails.price);
 //        intent.putExtra(BookNowActivity.EXTRA_Name,vendorDetails.full_name);
+        if(vendorDetails.getAvailability() && vendorDetails.isWithin_time())
         startActivity(intent);
+        else
+            Toast.makeText(this,"Sorry! the vendor is not available",Toast.LENGTH_SHORT).show();
 //    Toast.makeText(this,vendorDetails.full_name,Toast.LENGTH_SHORT).show();
     }
 }
