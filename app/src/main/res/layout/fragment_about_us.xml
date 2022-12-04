@@ -24,12 +24,12 @@
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="227dp"
-            android:padding="15dp"
+            android:layout_height="132dp"
+            android:padding="12dp"
             android:text="Find the nearest EV charging station using EZEV app
 Find and book your nearest electric vehicle charging station within minutes with just a few clicks  with the EZEV charging app, the ultimate app for charging your EV. EZEV app lets you find, navigate, book, pay and operate all EV charging stations within the app itself."
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/textView13"

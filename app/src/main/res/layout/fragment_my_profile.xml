@@ -1,95 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    android:visibility="visible"
-    tools:context=".views.MyProfile">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/screenshot_2022_11_28_190018" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:orientation="horizontal">
 
 
         <TextView
             android:id="@+id/user_name"
-            android:layout_width="95dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="64dp"
-            android:text="Name"
-            app:layout_constraintEnd_toStartOf="@+id/nameEdit"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10pt"
 
-        <TextView
-            android:id="@+id/user_phone_number"
-            android:layout_width="95dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="88dp"
-            android:text="Phone Number"
-            app:layout_constraintEnd_toStartOf="@+id/phoneEdit"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-        <TextView
-            android:id="@+id/user_email"
-            android:layout_width="95dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="92dp"
-            android:text="Email"
-            app:layout_constraintEnd_toStartOf="@+id/editmail"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_phone_number" />
-
+            android:textSize="20dp"
+            android:text="Name" />
 
         <TextView
             android:id="@+id/nameEdit"
-            android:layout_width="194dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="36dp"
-            android:ems="10"
-            android:text="Name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-
-    <TextView
-            android:id="@+id/phoneEdit"
-            android:layout_width="194dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="36dp"
-            android:ems="10"
-            android:text="Phone no."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEdit" />
-
-        <ImageView
-            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="108dp"
-            android:src="@drawable/screenshot_2022_11_28_190018"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="Name" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/user_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10pt"
+            android:textSize="20dp"
+            android:text="Phone Number" />
+
+
+        <TextView
+            android:id="@+id/phoneEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="Phone no."
+             />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10pt"
+            android:textSize="20dp"
+            android:text="Email"
+             />
 
         <TextView
             android:id="@+id/editmail"
-            android:layout_width="104dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="124dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneEdit" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="Email"
+           />
+    </LinearLayout>
+</LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>

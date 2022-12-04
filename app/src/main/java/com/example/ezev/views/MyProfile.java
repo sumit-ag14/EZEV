@@ -67,23 +67,27 @@ public class MyProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view  = inflater.inflate(R.layout.fragment_my_profile, container, false);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                 DocumentSnapshot ds = task.getResult();
-                View view=inflater.inflate(R.layout.fragment_my_profile,container,false);
-                TextView name  = view.findViewById(R.id.nameEdit);
-                System.out.println(ds.getString("full_name"));
-                String userName=ds.getString("full_name");
-                name.setText(userName);
-                TextView phone=view.findViewById(R.id.phoneEdit);
-                phone.setText(ds.getString("phone_number"));
-                TextView email=view.findViewById(R.id.editmail);
-                email.setText(ds.getString("email"));
+                if(ds.exists()){
+
+                    TextView name  = view.findViewById(R.id.nameEdit);
+                    System.out.println(ds.getString("full_name"));
+                    String userName=ds.getString("full_name");
+                    name.setText(userName);
+                    TextView phone=view.findViewById(R.id.phoneEdit);
+                    phone.setText(ds.getString("phone_number"));
+                    TextView email=view.findViewById(R.id.editmail);
+                    email.setText(ds.getString("email"));
+                }
+
             }
         });
-        return inflater.inflate(R.layout.fragment_my_profile, container, false);
+        return view;
     }
 }
