@@ -43,9 +43,11 @@ import com.google.firebase.firestore.GeoPoint;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +123,7 @@ public class VendorHomeFragment extends Fragment {
                         if(document.get("price")!=null){
                             priceEditText.setText(document.get("price").toString());
                         }
+
                         if(document.get("loc")!=null){
                             Geocoder geocoder = new Geocoder(getContext());
 
