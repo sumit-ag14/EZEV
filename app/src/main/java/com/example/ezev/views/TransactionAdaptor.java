@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ezev.R;
+import com.google.firebase.Timestamp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TransactionAdaptor extends RecyclerView.Adapter<TransactionAdaptor.TransactionViewHolder>{
     private Context context;
@@ -32,8 +35,16 @@ public class TransactionAdaptor extends RecyclerView.Adapter<TransactionAdaptor.
 
     @Override
     public void onBindViewHolder(@NonNull TransactionAdaptor.TransactionViewHolder holder, int position) {
-
-
+        TransactionDetails transactionDetails=transactionDetailsList.get(position);
+        //holder.date.setText(transactionDetails.getDate());
+        //Timestamp timestamp=obj.getTimestamp();
+        Timestamp timestamp=transactionDetails.getTimestamp();
+        Date ds = timestamp.toDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
+        String trans_time= dateFormat.format(ds);
+        holder.date.setText(trans_time);
+        holder.amount.setText(Long.toString(transactionDetails.getAmount()));
+        holder.station.setText(transactionDetails.getStation_name());
     }
 
     @Override

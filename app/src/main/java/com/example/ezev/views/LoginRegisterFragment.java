@@ -24,6 +24,7 @@ import com.example.ezev.viewmodel.LoginRegisterViewModel;
 import com.example.ezev.viewmodel.VendorHomeViewModel;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Transaction;
 
 public class LoginRegisterFragment extends Fragment {
     private EditText emailEditText;
@@ -46,6 +47,7 @@ public class LoginRegisterFragment extends Fragment {
                 if(firebaseUser!=null){
                     VendorHomeFragment.userId= firebaseUser.getUid();
                     MyProfile.userId= firebaseUser.getUid();
+                    TransactionList.userID=firebaseUser.getUid();
                     BookNowFragment.userId = firebaseUser.getUid();
                     if(isVendor == false) {
                         Intent intent = new Intent(getActivity(), HomeActivity.class);
