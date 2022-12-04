@@ -94,6 +94,7 @@ public class HomeFragment extends Fragment {
              }
          });
 
+
         ImageButton becomeVendor = view.findViewById(R.id.becomeVender);
         becomeVendor.setOnClickListener(new View.OnClickListener() {
             @Override

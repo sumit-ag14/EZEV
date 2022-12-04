@@ -204,7 +204,7 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onItemClick(VendorDetails vendorDetails) {
         Intent intent=new Intent(VendorList.this,BookNowActivity.class);
-        intent.putExtra(BookNowActivity.EXTRA_Name,vendorDetails.getVendorId());
+//        intent.putExtra(BookNowActivity.EXTRA_Name,vendorDetails.getVendorId());
         BookNowFragment.vid = vendorDetails.getVendorId();
         //intent.putExtra(BookNowActivity.EXTRA_Price,vendorDetails.price);
 //        intent.putExtra(BookNowActivity.EXTRA_Name,vendorDetails.full_name);

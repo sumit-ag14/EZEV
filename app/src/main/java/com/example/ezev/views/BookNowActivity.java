@@ -12,12 +12,12 @@ public class BookNowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent=getIntent();
-        String uid=intent.getStringExtra(EXTRA_Name);
+//        Intent intent=getIntent();
+//        String uid=intent.getStringExtra(EXTRA_Name);
         setContentView(R.layout.activity_book_now);
-        BookNowFragment fragment=
-                (BookNowFragment) getSupportFragmentManager().findFragmentById(R.id.book_now_frag);
-        fragment.setUID(uid);
+//        BookNowFragment fragment=
+//                (BookNowFragment) getSupportFragmentManager().findFragmentById(R.id.book_now_frag);
+//        fragment.setUID(uid);
 
     }
 }
