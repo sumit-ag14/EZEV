@@ -148,7 +148,7 @@ public class BookNowFragment extends Fragment  {
                 try {
                     obj.put("name",nameTextView.getText());
                     obj.put("currency","INR");
-//                    obj.put("amount",1000);
+                    obj.put("amount",price);
 
                     JSONObject prefill = new JSONObject();
                     prefill.put("contact",pn);

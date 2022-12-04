@@ -28,15 +28,21 @@ public class AppRepository {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
+    private MutableLiveData<Boolean> logOutMutableLiveData;
     private FirebaseFirestore firebaseFirestore;
     private String currUser;
     private static final String TAG = "success";
+
+    public MutableLiveData<Boolean> getLogOutMutableLiveData() {
+        return logOutMutableLiveData;
+    }
+
     public AppRepository(Application application) {
         this.application = application;
         firebaseAuth = FirebaseAuth.getInstance();
         userMutableLiveData = new MutableLiveData<>();
         firebaseFirestore = FirebaseFirestore.getInstance();
-
+        logOutMutableLiveData = new MutableLiveData<>();
     }
     public void login(String email,String password,boolean isVendor){
 
@@ -108,7 +114,11 @@ public class AppRepository {
                     }
                 });
     }
+    public void logOut(){
+        firebaseAuth.signOut();
+        logOutMutableLiveData.postValue(true);
 
+    }
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;
     }

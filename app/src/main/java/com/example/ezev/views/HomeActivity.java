@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
+import kotlin.experimental.BitwiseOperationsKt;
+
 public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
@@ -93,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentClass = About_us.class;
                 break;
             case R.id.logout: {
+                BookNowFragment.userId = null;
+                VendorHomeFragment.userId = null;
                 Intent intent=new Intent(this,MainActivity.class);
                 startActivity(intent);
             }
