@@ -48,14 +48,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class BookNowFragment extends Fragment implements PaymentResultListener {
+public class BookNowFragment extends Fragment  {
     public static String userId;
 
     String pn;
     String email;
     Double latitude;
     Double longitude;
-    String vendor_name;
+   static String vendor_name;
+   static  Long price;
+
     static String  vid;
 
     @Override
@@ -125,6 +127,8 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
                             e.printStackTrace();
                         }
                         costTextView.setText(document.get("price").toString());
+                        price = (Long) document.get("price");
+                        vendor_name = document.getString("full_name");
                     }
                         else {
                         Log.d("test", "No such document");
@@ -144,7 +148,7 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
                 try {
                     obj.put("name",nameTextView.getText());
                     obj.put("currency","INR");
-                    obj.put("amount",100);
+//                    obj.put("amount",1000);
 
                     JSONObject prefill = new JSONObject();
                     prefill.put("contact",pn);
@@ -180,30 +184,30 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
 
 
 
-    @Override
-    public void onPaymentSuccess(String s) {
-        Toast.makeText(getContext(),"payment sucess",Toast.LENGTH_SHORT).show();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> data = new HashMap<>();
-        CollectionReference det = db.collection("users").document(userId).collection("transactions");
-        Date date = new Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        String strDate= formatter.format(date);
-//        Timestamp ts=new Timestamp(date.getTime());
-        data.put("name","prakhar");
+//    @Override
+//    public void onPaymentSuccess(String s) {
+////        Toast.makeText(getContext(),"payment sucess",Toast.LENGTH_SHORT).show();
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        Map<String, Object> data = new HashMap<>();
+//        CollectionReference det = db.collection("users").document(userId).collection("transactions");
+//        Date date = new Date();
+////        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+////        String strDate= formatter.format(date);
+////        Timestamp ts=new Timestamp(date.getTime());
+//        data.put("name","prakhar");
+//        System.out.println("payment success ful");
+//
+//        det.add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//
+//            }
+//        });
+//    }
 
-
-        det.add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        Toast.makeText(getContext(),"payment failed",Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onPaymentError(int i, String s) {
+//        Toast.makeText(getContext(),"payment failed",Toast.LENGTH_SHORT).show();
+//    }
 
 }
