@@ -45,6 +45,7 @@ public class LoginRegisterFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser!=null){
                     VendorHomeFragment.userId= firebaseUser.getUid();
+
                     BookNowFragment.userId = firebaseUser.getUid();
                     if(isVendor == false) {
                         Intent intent = new Intent(getActivity(), HomeActivity.class);
@@ -83,6 +84,7 @@ public class LoginRegisterFragment extends Fragment {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 isVendor = vendorSwitch.isChecked();
+
 
                 if (email.length() > 0 && password.length() > 0) {
                     loginRegisterViewModel.login(email, password,isVendor);

@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -70,6 +71,8 @@ public class VendorHomeFragment extends Fragment {
     private ImageButton pickEndTime;
     private EditText startTime;
     private EditText endTime;
+    String time_start;
+    String time_end;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,11 +110,36 @@ public class VendorHomeFragment extends Fragment {
                         Log.d(TAG, "DocumentSnapshot data: ");
 //                        Object [] data = Objects.requireNonNull(document.getData()).values().toArray();
 //                        System.out.println((String)data[0]);
-                        System.out.println(document.getString("full_name"));
+
                         nameTextView.setText(document.getString("full_name"));
+
 ////                        System.out.println(data[0);
                         phoneTextView.setText(document.getString("phone_number"));
 //                        emailTextView.setText((String) data[2])
+                        if(document.getBoolean("avaiability")!=null){
+                            avaiabilityRadio.setChecked(!document.getBoolean("avaiability"));
+                        }
+                        if(document.get("price")!=null){
+                            priceEditText.setText(document.get("price").toString());
+                        }
+                        if(document.get("loc")!=null){
+                            Geocoder geocoder = new Geocoder(getContext());
+
+                            List<Address> addresses  = null;
+                            try {
+                                GeoPoint geo = (GeoPoint) document.get("loc");
+                                addresses = geocoder.getFromLocation(geo.getLatitude(),
+                                        geo.getLongitude(), 1);
+                                String address = addresses.get(0).getAddressLine(0);
+                                String city = addresses.get(0).getLocality();
+                                String state = addresses.get(0).getAdminArea();
+                                String zip = addresses.get(0).getPostalCode();
+                                String country = addresses.get(0).getCountryName();
+                                addressEditText.setText(address+" "+city+" "+state+" "+country);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -192,10 +220,12 @@ public class VendorHomeFragment extends Fragment {
                         c.set(Calendar.MINUTE,i1);
                         c.setTimeZone(TimeZone.getDefault());
                         SimpleDateFormat format=new SimpleDateFormat("k:mm a");
-                        String time=format.format(c.getTime());
+                         time_start=format.format(c.getTime());
 
-                        startTime.setText(time);
-                        Log.d("lodu",time);
+                        startTime.setText(time_start);
+
+                        System.out.println(time_start);
+                        Log.d("lodu",time_start);
                     }
                 },hours,min,false);
                 timePickerDialog.show();
@@ -216,10 +246,12 @@ public class VendorHomeFragment extends Fragment {
                         c.set(Calendar.MINUTE,i1);
                         c.setTimeZone(TimeZone.getDefault());
                         SimpleDateFormat format=new SimpleDateFormat("k:mm a");
-                        String time=format.format(c.getTime());
 
-                        endTime.setText(time);
-                        Log.d("lodu",time);
+                        time_start=format.format(c.getTime());
+
+
+                        endTime.setText(time_start);
+                        Log.d("lodu",time_start);
                     }
                 },hours,min,false);
                 timePickerDialog.show();

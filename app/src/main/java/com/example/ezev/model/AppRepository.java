@@ -17,7 +17,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,10 +39,14 @@ public class AppRepository {
 
     }
     public void login(String email,String password,boolean isVendor){
+
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                         if(task.isSuccessful()){
 
                             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
