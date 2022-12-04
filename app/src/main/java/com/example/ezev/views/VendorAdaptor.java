@@ -16,14 +16,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ezev.R;
+import com.google.firebase.Timestamp;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -54,6 +59,16 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
         holder.price.setText(Integer.toString(vendorDetails.getPrice()));
         holder.disance.setText(Double.toString(vendorDetails.getDistance()).substring(0,7)+" km");
         //Log.d("sumit", Boolean.toString(vendorDetails.getAvailability()));
+
+        //<--------------------------------------Button Color Changer Logic---------------------------------------------->
+        Timestamp timestamp=vendorDetails.getStart_time();
+        Date ds = timestamp.toDate();
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        String strTime = dateFormat.format(ds);
+
+
+        //Timestamp curr_timestamp = new Timestamp(System.currentTimeMillis());
+        Log.d("timestr", String.valueOf(timestamp.toDate().getTime()));
         if(vendorDetails.isAvaiability()){
             Log.d("sumit", "onBindViewHolder: hn mai idhar hu");
             holder.availablity_non_availibility.setBackgroundColor(rgb(178, 255, 89));
@@ -61,6 +76,10 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
             Log.d("sumit", "onBindViewHolder: hn mai idhar");
             holder.availablity_non_availibility.setBackgroundColor(rgb(230,74,25));
         }
+        //<--------------------------------------Button Color Changer Logic----------------------------------------------->
+
+
+        //<----------------------------------------Map Implementation----------------------------------------------------->
         holder.imbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +91,10 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
                 context.startActivity(mapIntent);
             }
         });
+        //<----------------------------------------Map Implementation----------------------------------------------------->
+
+
+        //<----------------------------------------Address Implementation------------------------------------------------->
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 
         List<Address> addresses  = null;
@@ -87,6 +110,7 @@ public class VendorAdaptor extends RecyclerView.Adapter<VendorAdaptor.VendorView
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //<----------------------------------------Address Implementation------------------------------------------------->
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

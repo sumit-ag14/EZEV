@@ -79,7 +79,11 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
                 for(DocumentChange dc: value.getDocumentChanges()){
                     Log.d("Tawish","hi here");
                     //Log.d("Tawish",dc.getDocument().toObject());
-                    vendordetails_list.add(dc.getDocument().toObject(VendorDetails.class));
+                    String vendor_id=dc.getDocument().getId();
+                    Log.d("Taw",dc.getDocument().getId());
+                    VendorDetails obj=dc.getDocument().toObject(VendorDetails.class);
+                    obj.setVendorId(vendor_id);
+                    vendordetails_list.add(obj);
                 }
 
                 vendorAdapter.notifyDataSetChanged();
