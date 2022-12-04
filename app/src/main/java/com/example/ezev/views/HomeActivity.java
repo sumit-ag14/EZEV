@@ -82,13 +82,15 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_transactions:
-                fragmentClass = AboutUs.class;
+                fragmentClass = TransactionList.class;
                 break;
             case R.id.nav_cs:
-                fragmentClass = AboutUs.class;
+                Intent intent1=new Intent(this,VendorList.class);
+                startActivity(intent1);
+//                fragmentClass = About_us.class;
                 break;
             case R.id.nav_joinUs:
-                fragmentClass = AboutUs.class;
+                fragmentClass = About_us.class;
                 break;
             case R.id.logout: {
                 Intent intent=new Intent(this,MainActivity.class);

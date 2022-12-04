@@ -104,6 +104,37 @@ public class HomeFragment extends Fragment {
             }
 
         });
+    // about us
+        ImageButton aboutUs = view.findViewById(R.id.aboutUs);
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = null;
+                 Class fragmentClass=About_us.class;
+                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                 try {
+                     fragment = (Fragment) fragmentClass.newInstance();
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+             }
+        });
+        ImageButton transactionBT = view.findViewById(R.id.transactions);
+        transactionBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = null;
+                Class fragmentClass=TransactionList.class;
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            }
+        });
         return view;
     }
 
