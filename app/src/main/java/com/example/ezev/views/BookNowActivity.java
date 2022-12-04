@@ -18,5 +18,6 @@ public class BookNowActivity extends AppCompatActivity {
         BookNowFragment fragment=
                 (BookNowFragment) getSupportFragmentManager().findFragmentById(R.id.book_now_frag);
         fragment.setUID(uid);
+
     }
 }

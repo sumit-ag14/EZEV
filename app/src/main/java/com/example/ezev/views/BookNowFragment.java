@@ -39,9 +39,14 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
     String email;
     Double latitude;
     Double longitude;
+    String vendor_name;
+    static String  vid;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        Log.d("bf",vid);
 
     }
 
@@ -52,6 +57,8 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
         TextView nameTextView = (TextView) view.findViewById(R.id.textView9);
         Button bookNow = (Button)view.findViewById(R.id.button2);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        System.out.print("this is the uid");
         db.collection("users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -70,6 +77,18 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
 
             }
         });
+//        db.collection("vendors").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                DocumentSnapshot ds = task.getResult();
+//                if (ds.exists()) {
+//
+//                   System.out.println(ds.getString("full_name"));
+//                } else {
+//
+//                }
+//            }
+//        });
         bookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
