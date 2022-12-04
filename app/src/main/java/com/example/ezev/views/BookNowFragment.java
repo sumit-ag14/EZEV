@@ -107,6 +107,7 @@ public class BookNowFragment extends Fragment implements PaymentResultListener {
         });
 
         return view;
+
     }
 
 
