@@ -18,5 +18,8 @@ public class MainActivity extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.mtoolbar);
 //        setSupportActionBar(toolbar);
     }
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 }
