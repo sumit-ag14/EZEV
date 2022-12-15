@@ -105,9 +105,13 @@ public class LoginRegisterFragment extends Fragment {
                 String name = nameEditText.getText().toString();
                 isVendor = vendorSwitch.isChecked();
                 if (email.length() > 0 && password.length() > 0 && name.length()>0 && phoneNumber.length()>0) {
-                        loginRegisterViewModel.register(email, password,name,phoneNumber,isVendor);
+                        if(phoneNumber.length()!=10){
+                            Toast.makeText(getContext(), "Phone number must be of 10 digits", Toast.LENGTH_SHORT).show();
+                        }else {
+                            loginRegisterViewModel.register(email, password, name, phoneNumber, isVendor);
+                        }
                 } else {
-                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "All fields must be  Must Be Entered", Toast.LENGTH_SHORT).show();
                 }
             }
         });

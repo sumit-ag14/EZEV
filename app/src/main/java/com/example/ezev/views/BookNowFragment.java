@@ -38,6 +38,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.security.PrivateKey;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +79,9 @@ public class BookNowFragment extends Fragment  {
         TextView costTextView = view.findViewById(R.id.textViewCost);
         TextView phoneTextView = view.findViewById(R.id.textViewPhone);
         TextView locationTextView = view.findViewById(R.id.textViewLoc);
+        TextView startTime = view.findViewById(R.id.textViewstartTime);
+        TextView stopTime = view.findViewById(R.id.textViewendTime);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docref = db.collection("users").document(userId);
                 docref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -86,10 +90,11 @@ public class BookNowFragment extends Fragment  {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        nameTextView.setText(document.getString("full_name"));
+
 
                         email = document.getString("email");
                         pn = document.getString("phone_number");
+                        System.out.println(pn);
                     } else {
                         Log.d("test", "No such document");
                     }
@@ -105,6 +110,7 @@ public class BookNowFragment extends Fragment  {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if(document.exists()) {
+                        nameTextView.setText(document.getString("full_name"));
                         plugTextView.setText(document.getString("charger_type"));
                         phoneTextView.setText(document.getString("phone_number"));
                         GeoPoint test = (GeoPoint)document.get("loc");
@@ -127,6 +133,17 @@ public class BookNowFragment extends Fragment  {
                             e.printStackTrace();
                         }
                         costTextView.setText(document.get("price").toString());
+                        Timestamp ts = (Timestamp) document.get("start_end");
+                        Date ds = new Date();
+                        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+                        String s = dateFormat.format(ds);
+                        startTime.setText(s);
+                        Timestamp ts1 = (Timestamp) document.get("end_end");
+                        Date ds1 = new Date();
+                        DateFormat dateFormat1 = new SimpleDateFormat("hh:mm");
+                        String s1 = dateFormat1.format(ds1);
+                        stopTime.setText(s1);
+
                         price = (Long) document.get("price");
                         vendor_name = document.getString("full_name");
                     }
@@ -151,7 +168,7 @@ public class BookNowFragment extends Fragment  {
                     obj.put("amount",price);
 
                     JSONObject prefill = new JSONObject();
-                    prefill.put("contact",pn);
+                    prefill.put("contact","+91"+pn);
                     prefill.put("email",email);
                     obj.put("prefill",prefill);
 

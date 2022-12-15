@@ -216,7 +216,7 @@ public class VendorHomeFragment extends Fragment {
                         .update(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                System.out.println("detail");
+                                Toast.makeText(getContext(),"update successful",Toast.LENGTH_SHORT).show();
                             }
                         });
             }

@@ -39,6 +39,7 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
     ArrayList<VendorDetails> sorted_with_price;
     ArrayList<VendorDetails> list_to_be_shown;
     Spinner spinner;
+    static Boolean flag=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,11 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
 
                 }
 
-                vendorAdapter.notifyDataSetChanged();
+                if(!flag){
+                    vendorAdapter.notifyDataSetChanged();
+                    flag=true;
+                }
+
                 //Log.d("Tawish", String.valueOf((vendordetails_list.get(0).loc)));
                 //Log.d("Tawish",String.valueOf(vendordetails_list.get(1).loc));
                 //Log.d("Tawish",String.valueOf(vendordetails_list.get(2).loc));
@@ -102,11 +107,19 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
                 //<----------------------------Distance calculation Logic starts------------------->
                 for(int i=0;i<vendordetails_list.size();i++){
                     GeoPoint pnt=vendordetails_list.get(i).loc;
-                    Double lat,lon;
-                    Log.d("Distance", "EventChangedListener: here");
-                    lat=pnt.getLatitude();
-                    lon=pnt.getLongitude();
-                    distance_calculated.add(distance(lat,lon));
+                    //if(!pnt) pnt.
+                    if(pnt==null) {
+                        distance_calculated.add(distance(32.2,27.1));
+                    }
+                    else {
+                        Double lat,lon;
+                        Log.d("Distance", "EventChangedListener: here");
+                        lat=pnt.getLatitude();
+                        lon=pnt.getLongitude();
+                        distance_calculated.add(distance(lat,lon));
+                    }
+
+
                 }
 
 
@@ -135,7 +148,7 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
                 TreeMap<Integer, VendorDetails> ht2 = new TreeMap<>();
                 //int j=20;
                 for(int i=0;i<vendordetails_list.size();i++){
-                    ht2.put(vendordetails_list.get(i).getPrice(),vendordetails_list.get(i));
+                    if(vendordetails_list.get(i).getLoc()!=null) ht2.put(vendordetails_list.get(i).getPrice(),vendordetails_list.get(i));
                     //j--;
                 }
                 Log.d("Tawish","here");
@@ -217,4 +230,7 @@ public class VendorList extends AppCompatActivity implements AdapterView.OnItemS
             Toast.makeText(this,"Sorry! the vendor is not available",Toast.LENGTH_SHORT).show();
 //    Toast.makeText(this,vendorDetails.full_name,Toast.LENGTH_SHORT).show();
     }
+
+
+
 }

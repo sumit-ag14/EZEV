@@ -24,6 +24,7 @@ public class VendorDetails {
     public String getFull_name() {  return full_name;
     }
 
+
     public Timestamp getStart_time() {
         return start_time;
     }

@@ -160,8 +160,8 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentClass = About_us.class;
                 break;
             case R.id.logout: {
-                BookNowFragment.userId = null;
-                VendorHomeFragment.userId = null;
+//                BookNowFragment.userId = null;
+//                VendorHomeFragment.userId = null;
                 Intent intent=new Intent(this,MainActivity.class);
                 startActivity(intent);
             }
